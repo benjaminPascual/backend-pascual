@@ -9,31 +9,26 @@ class ProductManager {
         return this.products;
     }
 
-    addProduct(title, description, price, thumbnail, code, stock){
+    addProduct(product){
         ProductManager.counterId++;
         const newProduct = {
-            id: ProductManager.counterId,
-            title,
-            description,
-            price,
-            thumbnail,
-            code,
-            stock
+            ...product,
+            id: ProductManager.counterId
         }
 
-        const productoExist = this.products.find(el => el.code === code)
+        const productoExist = this.products.find(el => el.code === newProduct.code)
+        const camposVacios = (newProduct.title===""
+                                || newProduct.description===""
+                                || newProduct.price===""
+                                || newProduct.thumbnail===""
+                                || newProduct.code===""
+                                || newProduct.stock===""
+                            )
 
         if(productoExist){
             console.log("Este codigo ya existe.");
         } else {
-            if(
-                title === undefined
-                || description === undefined
-                || price === undefined
-                || thumbnail === undefined
-                || code === undefined
-                || stock === undefined
-            ){
+            if(camposVacios){
                 console.log("Todos los campos son obligatorios.");
             } else {
                 this.products.push(newProduct);
@@ -49,23 +44,26 @@ class ProductManager {
     }
     
 }
-const productManager = new ProductManager()
 
-//agregar productos
-productManager.addProduct("Remera", "Remera de algodon", 30, "img1", 1, 30);
-productManager.addProduct("Camisa", "Camisa slimfit", 45, "img2", 2, 20);
+const product = {
+    title: "Producto prueba",
+    description: "Este es un product prueba",
+    price: 200,
+    thumbnail: "Sin imagen",
+    code: "abc123",
+    stock: 25
+};
 
-//muestra todos los productos 
+
+const productManager = new ProductManager();
+
 console.log(productManager.getProducts());
 
-//campos obligatorios
-productManager.addProduct("Jean", 60, "img3", 3, 46);
+productManager.addProduct(product);
 
-//code existente 
-productManager.addProduct("Zapatilla", "Zapatilla deportiva", 60, "img4", 2, 10);
+console.log(productManager.getProducts());
 
-//busca un producto con id (existente)
-productManager.getProductById(1);
+productManager.addProduct(product);
 
-//busca un producto con id (inexistente)
-productManager.getProductById(12);
+productManager.getProductById("abc123");
+productManager.getProductById("a12");

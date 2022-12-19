@@ -19,7 +19,25 @@ const queries = async () => {
             code: "abc123",
             stock: 25
         };
+        const product2 = {
+            title: "producto prueba2",
+            description: "Este es un producto prueba2",
+            price: 100,
+            thumbnail: "Sin imagen",
+            code: "abc123", //mismo id que product1
+            stock: 30
+        };
+        const product3 = {
+            title: "producto prueba3",
+            description: "Este es un producto prueba3",
+            price: 150,
+            thumbnail: "Sin imagen",
+            code: "abc456", 
+            stock: 15
+        };
         await Manager.addProduct(product1);
+        await Manager.addProduct(product2);
+        await Manager.addProduct(product3);
 
         // arreglo con producto
         arr = await Manager.getProducts();
@@ -39,9 +57,9 @@ const queries = async () => {
         console.log(arr);
 
         // delete product
-        await Manager.deleteProduct(1);
+        await Manager.deleteProduct(3);
         arr = await Manager.getProducts();
-        console.log(arr); // array vacio nuevamente
+        console.log(arr); // array sin product3
 
         await Manager.deleteProduct(2); //error
 

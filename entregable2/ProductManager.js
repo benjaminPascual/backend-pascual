@@ -48,9 +48,21 @@ class ProductManager {
                 ...prod
             }
 
-            products.push(newProduct);
-            await this.writeFile(products);
-            console.log("producto agregado satisfactoriamente!");
+            const productoExist = products.find(el => el.code === newProduct.code)
+            const values = Object.values(newProduct)
+            const camposVacios = values.includes("")
+    
+            if(productoExist){
+                console.log("Este codigo ya existe.");
+            } else {
+                if(camposVacios){
+                    console.log("Todos los campos son obligatorios.");
+                } else {
+                   products.push(newProduct);
+                    await this.writeFile(products);
+                    console.log("producto agregado satisfactoriamente!"); 
+                }
+            }
 
         } catch (error) {
             throw new Error(error);
@@ -100,20 +112,17 @@ class ProductManager {
         try {
             const products = await this.getProducts();
             const productFilter = await this.getProductById(id);
+            
             if (!productFilter) {
                 throw new Error("no se puede eliminar producto porque no existe")
             }
-            const updatedList = products.map(el=>{
-                if (el.id===productFilter.id) {
-                    return products.filter(elem => elem.id !== productFilter.id);            
-                } else {
-                    return products
-                };
-            });
-
+            
+            const updatedList = await products.filter(elem => elem.id !== productFilter.id);            
+            
+            await this.writeFile([]);
             await this.writeFile(updatedList);
             console.log("producto eliminado correctamente");
-            
+
         } catch (error) {
             console.log(error);
         }

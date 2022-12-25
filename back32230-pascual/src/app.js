@@ -1,6 +1,6 @@
 const express = require("express")
 const ProductManager = require("./ProductManager")
-const Manager = new ProductManager("../data/productos.json");
+const Manager = new ProductManager("./data/productos.json");
 
 const app = express();
 

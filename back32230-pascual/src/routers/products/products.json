@@ -1,0 +1,134 @@
+[
+	{
+		"id": "32d44e47-f74f-4178-9ba3-a59f6ed51795",
+		"title": "Brioso",
+		"description": "Bodega: Susana Balbo Wines; Varietal: Malbec",
+		"price": 130,
+		"thumbnail": [],
+		"code": "abc789",
+		"stock": 53,
+		"status": true,
+		"category": "vino"
+	},
+	{
+		"id": "4cf3029c-262d-4fc7-9666-e1afb71e00f5",
+		"title": "DV Catena",
+		"description": "Bodega: Catena Zapata; Varietal: Cabernet-Malbec",
+		"price": 300,
+		"thumbnail": [],
+		"code": "abc123",
+		"stock": 50,
+		"status": true,
+		"category": "vino"
+	},
+	{
+		"id": "894060a1-5959-424d-9a45-7d9f41b30fd8",
+		"title": "Malbec Argentino",
+		"description": "Bodega: Catena Zapata; Varietal: Malbec",
+		"price": 550,
+		"thumbnail": [],
+		"code": "abc456",
+		"stock": 10,
+		"status": true,
+		"category": "vino"
+	},
+	{
+		"id": "664b2124-41fd-4af1-b831-20f27f750209",
+		"title": "Benmarco Expresivo",
+		"description": "Bodega: Susana Balbo Wines; Varietal: 85% Malbec, 15% Cabernet Franc",
+		"price": 1750,
+		"thumbnail": [],
+		"code": "def123",
+		"stock": 22,
+		"status": true,
+		"category": "vino"
+	},
+	{
+		"id": "cbf989b9-f156-4142-9594-dc46ee1fba06",
+		"title": "Barda",
+		"description": "Bodega: Bodegas Chacra; Varietal: Pinot Noir",
+		"price": 600,
+		"thumbnail": [],
+		"code": "def456",
+		"stock": 70,
+		"status": true,
+		"category": "vino"
+	},
+	{
+		"id": "38b1598f-8a25-47b6-9f8a-634f82ae697c",
+		"title": "Marcelo Pelleriti Winmakers Series",
+		"description": "Bodega: Monteviejo; Varietal: Malbec",
+		"price": 5,
+		"thumbnail": [],
+		"code": "def789",
+		"stock": 1000,
+		"status": true,
+		"category": "vino"
+	},
+	{
+		"id": "3b595254-9c24-45de-923e-a90e4f4a6bca",
+		"title": "Gran Enemigo",
+		"description": "Bodega: Catena Zapata; Varietal: Cabernet Franc",
+		"price": 2300,
+		"thumbnail": [],
+		"code": "ghi123",
+		"stock": 3,
+		"status": true,
+		"category": "vino"
+	},
+	{
+		"id": "2cafc144-f1cc-44cb-aafa-bf8581649dfe",
+		"title": "Black Tears",
+		"description": "Bodega: Tapiz; Varietal: Malbec",
+		"price": 35,
+		"thumbnail": [],
+		"code": "ghi456",
+		"stock": 25,
+		"status": true,
+		"category": "vino"
+	},
+	{
+		"id": "fde50557-d259-4ae7-9a89-332be3b2186c",
+		"title": "Proyecto Las Compuertas Malbec 1914",
+		"description": "Bodega: Durigutti; Varietal: Malbec",
+		"price": 376,
+		"thumbnail": [],
+		"code": "ghi789",
+		"stock": 500,
+		"status": true,
+		"category": "vino"
+	},
+	{
+		"id": "68c6def6-ad78-47a2-9c8a-62b3a5dc82a8",
+		"title": "Malcriado",
+		"description": "Bodega: Mosquita Muerta Wines; Varietal: Malbec",
+		"price": 289,
+		"thumbnail": [],
+		"code": "jkl123",
+		"stock": 450,
+		"status": true,
+		"category": "vino"
+	},
+	{
+		"id": "65ddd010-4a82-4437-b3e1-04b1a0ff7d92",
+		"title": "Exploracion Paraje Altamira",
+		"description": "Bodega: Las Perdices; Varietal: Malbec",
+		"code": "mno123",
+		"price": 1200,
+		"status": true,
+		"stock": 250,
+		"category": "vino",
+		"thumbnails": []
+	},
+	{
+		"id": "b48b4055-d533-4543-a47d-ad2cc275fb30",
+		"title": "Nicasia",
+		"description": "Catena Zapata; Varietal: Cabernet Franc",
+		"code": "jkl456",
+		"price": 600,
+		"status": "true",
+		"stock": 500,
+		"category": "vino",
+		"thumbnails": []
+	}
+]

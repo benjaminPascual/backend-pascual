@@ -1,5 +1,6 @@
 const fs = require("fs/promises");
 const {existsSync} = require("fs");
+const { v4: uuidv4 } = require('uuid');
 
 class ProductManager {
     static counterId = 0;
@@ -28,23 +29,33 @@ class ProductManager {
            }
 
        } catch (error) {
-           throw new Error(error);
+           throw new Error(error.message);
        }
     }
-   
+
+    async getProductById(id){
+        try {
+            const products = await this.getProducts();
+            const foundProduct = products.find(el => el.id === id);
+
+            if (foundProduct) {
+                return foundProduct 
+            } else{
+                throw new Error("producto no encontrado");
+            }
+             
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
+
     async addProduct(prod){
         
         try {
             const products = await this.getProducts();
 
-            if (products.length === 0) {
-                ProductManager.counterId = 1;
-            } else {
-                ProductManager.counterId++;
-            }
-            
             const newProduct = await {
-                id: ProductManager.counterId,
+                id: uuidv4(),
                 ...prod
             }
 
@@ -53,10 +64,12 @@ class ProductManager {
             const camposVacios = values.includes("")
     
             if(productoExist){
-                console.log("Este codigo ya existe.");
+                throw new Error("Este codigo ya existe.");
+                 
             } else {
                 if(camposVacios){
-                    console.log("Todos los campos son obligatorios.");
+                    throw new Error("Todos los campos son obligatorios.");
+                
                 } else {
                    products.push(newProduct);
                     await this.writeFile(products);
@@ -65,22 +78,7 @@ class ProductManager {
             }
 
         } catch (error) {
-            throw new Error(error);
-        }
-    }
-
-    async getProductById(id){
-        try {
-            const products = await this.getProducts();
-            const foundProduct = products.find(el => el.id === id)
-            if (foundProduct) {
-                return foundProduct 
-            } else{
-                throw new Error("producto no encontrado");
-            }
-             
-        } catch (error) {
-            console.log(error.message);
+            throw new Error(error.message);
         }
     }
 
@@ -88,6 +86,12 @@ class ProductManager {
         try {
             const products = await this.getProducts();
             const productFilter = await this.getProductById(id);
+            const values = await Object.values(update);
+            const camposVacios = await values.includes("");
+
+            if (camposVacios) {
+                throw new Error("Todos los campos son obligatorios.");
+            }
 
             const productUpdated = {...productFilter,...update};
             
@@ -103,7 +107,7 @@ class ProductManager {
             console.log("producto actualizado");
 
         } catch (error) {
-            console.log(error);
+            throw new Error(error.message);
         }
         
     }
@@ -114,7 +118,7 @@ class ProductManager {
             const productFilter = await this.getProductById(id);
             
             if (!productFilter) {
-                throw new Error("no se puede eliminar producto porque no existe")
+                throw new Error("no se puede eliminar producto porque no existe");
             }
             
             const updatedList = await products.filter(elem => elem.id !== productFilter.id);            
@@ -124,7 +128,7 @@ class ProductManager {
             console.log("producto eliminado correctamente");
 
         } catch (error) {
-            console.log(error);
+            throw new Error(error.message);
         }
     }
 }

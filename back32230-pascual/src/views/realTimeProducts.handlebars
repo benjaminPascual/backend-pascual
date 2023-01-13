@@ -1,0 +1,22 @@
+<div>
+    <p>Agregar producto:</p>
+    <input type="text" id="title-input" placeholder="Nombre">
+    <input type="text" id="description-input" placeholder="Descripcion">
+    <input type="text" id="price-input" placeholder="Precio">
+    <input type="text" id="code-input" placeholder="Codigo">
+    <input type="text" id="category-input" placeholder="Categoria">
+    <input type="text" id="stock-input" placeholder="Stock">
+    <input type="text" id="thumbnail-input" placeholder="Imagenes">
+    <button id="addButton">Agregar</button>
+</div>
+<div>
+    <p>Eliminar producto:</p>
+    <input type="text" id="deleteId" placeholder="Id">
+    <button id="deleteButton">Eliminar</button>
+</div>
+<div>
+    <p>Productos:</p>
+    <p id="productsBox"></p>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/script.js"></script>

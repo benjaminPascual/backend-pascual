@@ -1,8 +1,9 @@
 const {Router} = require("express");
+const path = require("path");
 const CartManager = require("./cartManager")
-const Manager = new CartManager(__dirname+"/carts.json")
+const Manager = new CartManager(path.resolve(__dirname+"../../../public/data/carts.json"))
 const ProductManager = require("../products/ProductManager")
-const ManagerProducts = new ProductManager(__dirname+"../../products/products.json");
+const ManagerProducts = new ProductManager(path.resolve(__dirname+"../../../public/data/products.json"));
 
 const router = Router();
 

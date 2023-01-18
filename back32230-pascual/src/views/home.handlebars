@@ -3,13 +3,15 @@
         <div>
             <ul>
                 <li>Producto: {{this.title}} // 
+                    Id: {{this.id}} //
                     Descripcion: {{this.description}} // 
                     Precio: {{this.price}} // 
                     Categoria: {{this.category}}
+                    <img src="{{this.thumbnail}}" alt="{{this.id}}">
                 </li>
+                
             </ul>
         </div>
     {{/each}}
 </div>
 <script src="/socket.io/socket.io.js"></script>
-<script src="/script.js"></script>

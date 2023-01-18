@@ -22,6 +22,7 @@ const renderproduct = (product) => {
                 `Precio: ${product.price} // `,
                 `Categoria: ${product.category}`,
             "</li>",
+            `<img src="${product.thumbnail}" alt="${product.id}">`,
         "</ul>",
     "</div>"
     ]);
@@ -58,6 +59,13 @@ deleteButton.addEventListener("click", ()=>{
 
 
 socket.on("updatedProducts", (data)=>{
+    const html = getHtml( data.map(item=>{
+        return renderproduct(item);
+    }));
+    productsBox.innerHTML = html;
+});
+
+socket.on("renderProducts", (data)=>{
     const html = getHtml( data.map(item=>{
         return renderproduct(item);
     }));

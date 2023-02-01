@@ -40,9 +40,26 @@ chatBox.addEventListener("keyup", (event)=>{
 
 });
 
+chatButton.addEventListener("click", ()=>{
+    if(chatBox.value.trim().length){
+        socket.emit("message", {
+            user:user,
+            message: chatBox.value
+        });
+        chatBox.value = ""
+    }
+})
+
 socket.on("messagesLogs",(data)=>{
     const html = getHtml(data.map(item=>{
         return renderMessage(item);
     }));
-    messagesBox.innerHTML = html
+    messagesBox.innerHTML = html;
+});
+
+socket.on("renderChat", (data)=>{
+    const html = getHtml( data.map(item=>{
+        return renderMessage(item);
+    }));
+    messagesBox.innerHTML = html;
 });

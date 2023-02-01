@@ -11,6 +11,7 @@ const deleteButton = document.getElementById("deleteButton");
 const deleteId = document.getElementById("deleteId");
 const productsBox = document.getElementById("productsBox");
 
+
 const getHtml = (template) => template.join("\n");
 const renderproduct = (product) => {
    const html = getHtml([  
@@ -56,8 +57,6 @@ deleteButton.addEventListener("click", ()=>{
     deleteId.value="";
 });
 
-
-
 socket.on("updatedProducts", (data)=>{
     const html = getHtml( data.map(item=>{
         return renderproduct(item);
@@ -71,3 +70,4 @@ socket.on("renderProducts", (data)=>{
     }));
     productsBox.innerHTML = html;
 });
+

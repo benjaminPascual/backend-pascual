@@ -1,0 +1,12 @@
+<div class="appChat">
+    <div>
+        <input type="text" id="chatBox" placeholder="Say something">
+        <button id="chatButton">Send</button>
+    </div>
+    <div id="messagesBox">
+        <span>{item.user}: {item.message}</span>
+    </div>
+</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/script.chat.js"></script> 

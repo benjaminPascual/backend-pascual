@@ -3,7 +3,6 @@ const {existsSync} = require("fs");
 const { v4: uuidv4 } = require('uuid');
 
 class ProductManager {
-    static counterId = 0;
 
     constructor(path){
         this.path = path

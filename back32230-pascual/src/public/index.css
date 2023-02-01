@@ -7,3 +7,8 @@ img{
     height: 100px;
     width: auto;
 }
+
+#messagesBox{
+    display: flex;
+    flex-direction: column;
+}

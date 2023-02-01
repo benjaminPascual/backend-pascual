@@ -17,12 +17,12 @@ const renderproduct = (product) => {
     "<div>",
         "<ul>",
             `<li>Producto: ${product.title} //`, 
-                `Id: ${product.id} //`,
+                `Id: ${product._id} //`,
                 `Descripcion: ${product.description} // `,
                 `Precio: ${product.price} // `,
                 `Categoria: ${product.category}`,
             "</li>",
-            `<img src="${product.thumbnail}" alt="${product.id}">`,
+            `<img src="${product.thumbnail}" alt="${product._id}">`,
         "</ul>",
     "</div>"
     ]);

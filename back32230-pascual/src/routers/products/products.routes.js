@@ -116,10 +116,18 @@ const router = Router();
 
 router.get("/", async (req,res)=>{
     try {
-        const products = await Service.getAll()
+        const products = await Service.getAll(req.query)
         res.status(200).send({
             status: "success",
-            data: products
+            data: products.docs,
+            totalPages: products.totalPages,
+            prevPage: products.prevPage,
+            nextPage: products.nextPage,
+            page: products.page,
+            hasPrevPage: products.hasPrevPage,
+            hasNextPage: products.hasNextPage,
+            prevLink: null,
+            nexLink: null
         })
     } catch (error) {
         console.log(error)
@@ -132,7 +140,8 @@ router.get("/", async (req,res)=>{
 
 router.get("/:pid", async (req,res)=>{
     try {
-        const product = await Service.getOne(req.params.pid)
+        const pid = req.params.pid
+        const product = await Service.getOne(pid)
         res.status(200).send({
             status: "success",
             data: product
@@ -163,7 +172,8 @@ router.post("/", async (req,res)=>{
 
 router.delete("/:pid", async (req,res)=>{
     try {
-        const product = await Service.deleteOne(req.params.pid)
+        const pid = req.params.pid
+        const product = await Service.deleteOne(pid)
         res.status(200).send({
             status: "success",
             data: product

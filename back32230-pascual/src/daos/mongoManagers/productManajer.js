@@ -13,9 +13,18 @@ class ProductService{
         
     } 
 
-      async getAll(){
+      async getAll({limit, page, query, sort}){
         try {
-            return await modelProduct.find();
+            const filter = (query ? {category: query} : {})
+
+            const options = {
+                sort: (sort ? {price: sort} : {}),
+                limit: limit || 10,
+                page: page || 1,
+                lean: true
+            }
+
+            return await modelProduct.paginate(filter,options);
         } catch (error) {
             throw new Error(error.message);
         }

@@ -91,20 +91,20 @@ const router = Router();
 
 // Mongoose
 
-router.post("/", async (req,res)=> {
+router.get('/',async (req, res) =>{
     try {
-        await Service.addCart();
-        res.status(200).send({
-            status: "success"
+        const carts = await Service.getCarts(); 
+        res.send({
+            status: 'success',
+            carts: carts
         })
-
     } catch (error) {
         res.status(500).send({
-            status: "Error",
-            data:error.message
-        });
+            status: "error",
+            data: error.message
+        })
     }
-});
+})
 
 router.get("/:cid", async (req,res)=>{
     try {
@@ -132,6 +132,21 @@ router.get("/:cid", async (req,res)=>{
         });
     }
 
+});
+
+router.post("/", async (req,res)=> {
+    try {
+        await Service.addCart();
+        res.status(200).send({
+            status: "success"
+        })
+
+    } catch (error) {
+        res.status(500).send({
+            status: "Error",
+            data:error.message
+        });
+    }
 });
 
 router.post("/:cid/product/:pid", async (req,res)=>{
@@ -165,5 +180,74 @@ router.post("/:cid/product/:pid", async (req,res)=>{
 
 });
 
+router.put('/:cid', async (req, res) =>{
+    const { cid } = req.params
+    const newProducts = req.body
+    try {
+        const updatedCart = await Service.updateProducts(cid, newProducts)
+        res.send({
+            status: 'success',
+            data: updatedCart
+        })
+        
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            data: error.message
+        })
+    }
+})
+
+router.put('/:cid/product/:pid', async(req,res)=>{
+        const cid = req.params.cid
+        const pid = req.params.pid
+
+    try {
+        const updateProduct = await Service.addProductToCart(cid, pid)
+        res.send({
+            status: 'success',
+            data: updateProduct
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            data: error.message
+        })
+    }
+})
+
+router.delete('/:cid/product/:pid', async(req,res)=>{
+    try {
+        const cid = req.params.cid
+        const pid = req.params.pid
+
+        const deletedProduct = await Service.deleteProductFromCart(cid, pid)
+        res.send({
+            status: 'success',
+            data: deletedProduct
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            data: error.message
+        })
+    }
+})
+
+router.delete('/:cid', async(req,res)=>{
+    try {
+        const cid = req.params.cid
+        const result = await Service.deleteAllProducts(cid)
+        res.send({
+            status: 'success',
+            data: result
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            data: error.message
+        })
+    }
+})
 
 module.exports = router

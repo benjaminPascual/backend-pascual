@@ -159,7 +159,8 @@ router.post("/:cid/product/:pid", async (req,res)=>{
         if (!productFound) { throw new Error("product not found") };
 
         const newProduct = { 
-            product: pid,
+            product: productFound,
+            pid: pid,
             quantity: 1
         };
 
@@ -223,7 +224,7 @@ router.delete('/:cid/product/:pid', async(req,res)=>{
         const pid = req.params.pid
 
         const deletedProduct = await Service.deleteProductFromCart(cid, pid)
-        res.send({
+        res.status(200).send({
             status: 'success',
             data: deletedProduct
         })

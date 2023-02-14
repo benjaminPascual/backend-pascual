@@ -1,4 +1,4 @@
-const { model } = require("mongoose");
+
 const modelCart = require("../models/cart.model");
 
 class CartService{
@@ -31,19 +31,19 @@ class CartService{
          }
     }
  
-    async addProductToCart(cid, product){
+    async addProductToCart(cid, data){
          
          try {
             const cartFound = await this.getCartById(cid);
-            const productsInCart = cartFound.products
-            const productExistInCart = await productsInCart.find(el => el.product === product.product);
+            const productExistInCart = cartFound.products.find(el => el.product._id == data.pid);
+
             if(productExistInCart){
 
                 productExistInCart.quantity++
                
                 return await modelCart.findOneAndUpdate({_id: cid}, cartFound);
             }else{
-                await productsInCart.push(product)
+                await cartFound.products.push(data)
                 return await modelCart.findOneAndUpdate({_id: cid}, cartFound)
             }
          } catch (error) {
@@ -66,8 +66,9 @@ class CartService{
     async deleteProductFromCart(cid, pid){
         try {
             const cart = await this.getCartById(cid);
-            const productToDelete = cart.products.find(ele => ele.product == pid)
+            const productToDelete = cart.products.find(ele => ele.product._id == pid)
             const index = cart.products.indexOf(productToDelete)
+
             if(index < 0){
                 throw new Error('Product not found')
             }

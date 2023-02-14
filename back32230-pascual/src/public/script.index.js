@@ -7,9 +7,9 @@ const renderproduct = (product) => {
     `<div class="product-item" id="${product._id}">`,
         `<p id="item-title">${product.title}</p>`,
         `<p>${product.description}</p>`,
-        `<p class="price-tag">${product.price}</p>`,
+        `<p class="price-tag">$${product.price}</p>`,
         `<div class="thumbnail-container">`,
-            `<img src="../../statics/img/" alt="">`,
+            `<img src="${product.thumbnail}" alt="">`,
         `</div>`,
         `<p class="stock-tag">Disponibles: ${product.stock}</p>`,
         `<button id="add-to-cart-button" onclick="addToCart(event)">Add to cart</button>`,
@@ -39,13 +39,26 @@ const addToCart = async (event) =>{
     fetch(`/api/carts/${currentCart}/product/${productId}`, {
         method: 'POST'
     })
-    .then(alert('item added to cart'))
+    .then(
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'item added to cart',
+            showConfirmButton: false,
+            timer: 900
+          }))
 }
 
 
 const seeCart = async (event) =>{
     if(!currentCart){
-        return alert('cart empty')
+        return Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'cart empty',
+            showConfirmButton: false,
+            timer: 1000
+          })
     }
     window.location.href = `/cart/${currentCart}`
 }

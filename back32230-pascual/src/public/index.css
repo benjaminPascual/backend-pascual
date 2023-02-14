@@ -1,6 +1,6 @@
 li{
     text-align: center;
-    color: cadetblue;
+    color: rgb(121, 121, 121);
     
 }
 img{
@@ -13,6 +13,14 @@ img{
     flex-direction: column;
 }
 
+nav{
+    background-color: rgb(121, 121, 121);
+}
+
+.nav-wrapper{
+    width: 80%;
+}
+
 body{
     background-color: #dfdfdf;
 }
@@ -22,7 +30,14 @@ body{
     font-size: 3rem;
 }
 
-#product-list-container{
+#productsBoxIndex{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cart-list{
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;

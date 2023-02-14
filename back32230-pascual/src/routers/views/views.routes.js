@@ -4,10 +4,6 @@ const Service = new ProductService();
 const CartManager = require("../../daos/mongoManagers/cartManager");
 const cartService = new CartManager();
 
-// const ProductManager = require("../../daos/fileManagers/ProductManager")
-// const Manager = new ProductManager(__dirname+"../../../public/data/products.json");
-
-
 const router = Router();
 
 router.get("/products", async (req,res)=>{
@@ -24,16 +20,9 @@ router.get('/cart/:cid', async (req, res) => {
     const cid = req.params.cid 
     try {
         const cart = await cartService.getCartById(cid)
-        const allProducts = await Service.getAll()
-        // const productsInCart = allProducts.docs.map(el=>{
-        //         if (el.id===cart.products) {
-        //             return el               
-        //         } 
-        //     });
-        console.log(cart.products.product); 
         res.render('cart', {
             title: "Cart",
-            styles:"cart.css",
+            style:"../index.css",
             products: cart.products,
             cartId: cart._id
         })

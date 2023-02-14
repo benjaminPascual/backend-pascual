@@ -24,6 +24,7 @@ const renderproduct = (product) => {
                 `Categoria: ${product.category}`,
             "</li>",
             `<img src="${product.thumbnail}" alt="${product._id}">`,
+            `<button id="addToCartButton" onclick="addToCart(event)">Add to cart</button>`,
         "</ul>",
     "</div>"
     ]);

@@ -1,19 +1,7 @@
 <div >
+    <h1 class="main-title">Our products</h1>
+    <button id="see-cart-button" onclick="seeCart(event)">See Cart</button>
     <p id="productsBoxIndex"></p>
-    {{!-- {{#each list}}
-        <div>
-            <ul>
-                <li>Producto: {{this.title}} // 
-                    Id: {{this._id}} //
-                    Descripcion: {{this.description}} // 
-                    Precio: {{this.price}} // 
-                    Categoria: {{this.category}}
-                    <img src="{{this.thumbnail}}" alt="{{this.id}}">
-                </li>
-                
-            </ul>
-        </div>
-    {{/each}} --}}
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/script.index.js"></script> 

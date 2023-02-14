@@ -1,6 +1,6 @@
 const {Router} = require("express");
 
-const ProductService = require("../../daos/mongoManagers/productManajer");
+const ProductService = require("../../daos/mongoManagers/productManager");
 const productService = new ProductService();
 const CartService = require("../../daos/mongoManagers/cartManager")
 const Service = new CartService();
@@ -136,9 +136,10 @@ router.get("/:cid", async (req,res)=>{
 
 router.post("/", async (req,res)=> {
     try {
-        await Service.addCart();
+        const addCart = await Service.addCart();
         res.status(200).send({
-            status: "success"
+            status: "success",
+            cart: addCart
         })
 
     } catch (error) {

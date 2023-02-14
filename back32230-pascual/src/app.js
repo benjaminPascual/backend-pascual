@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 // const Manager = new ProductManager(__dirname+"/public/data/products.json");
 
 // Mongoose
-const ProductService = require("./daos/mongoManagers/productManajer");
+const ProductService = require("./daos/mongoManagers/productManager");
 const Service = new ProductService();
 const messageManager = require("./daos/mongoManagers/messageManager");
 const ChatService = new messageManager();
@@ -70,9 +70,10 @@ const io = new Server(httpServer);
 
 // Mongoose
 io.on("connection", async (socket)=> {
-
+    
     io.emit("renderProducts", await Service.getAll());
     io.emit("renderProductsIndex", await Service.getAll());
+    io.emit("renderProductsCart", await Service.getAll());
     io.emit("renderChat", await ChatService.getAll());
 
     socket.on("addProduct", async (data)=>{

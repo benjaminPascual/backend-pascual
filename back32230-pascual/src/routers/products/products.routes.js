@@ -1,6 +1,6 @@
 const {Router} = require("express");
 
-const ProductService = require("../../daos/mongoManagers/productManajer");
+const ProductService = require("../../daos/mongoManagers/productManager");
 const Service = new ProductService();
 
 const router = Router();
@@ -117,6 +117,8 @@ const router = Router();
 router.get("/", async (req,res)=>{
     try {
         const products = await Service.getAll(req.query)
+        console.log(products
+        );
         res.status(200).send({
             status: "success",
             data: products.docs,

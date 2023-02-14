@@ -1,8 +1,8 @@
 const {Router} = require("express");
-const ProductService = require("../../daos/mongoManagers/productManajer");
+const ProductService = require("../../daos/mongoManagers/productManager");
 const Service = new ProductService();
-const messageManager = require("../../daos/mongoManagers/messageManager");
-const ChatService = new messageManager();
+const CartManager = require("../../daos/mongoManagers/cartManager");
+const cartService = new CartManager();
 
 // const ProductManager = require("../../daos/fileManagers/ProductManager")
 // const Manager = new ProductManager(__dirname+"../../../public/data/products.json");
@@ -10,7 +10,7 @@ const ChatService = new messageManager();
 
 const router = Router();
 
-router.get("/", async (req,res)=>{
+router.get("/products", async (req,res)=>{
     const products = await Service.getAll();
     const data = {
         title: "home",
@@ -18,6 +18,33 @@ router.get("/", async (req,res)=>{
         style: "index.css"
     }
     res.render("home", data);
+})
+
+router.get('/cart/:cid', async (req, res) => {
+    const cid = req.params.cid 
+    try {
+        const cart = await cartService.getCartById(cid)
+        const allProducts = await Service.getAll()
+        // const productsInCart = allProducts.docs.map(el=>{
+        //         if (el.id===cart.products) {
+        //             return el               
+        //         } 
+        //     });
+        console.log(cart.products.product); 
+        res.render('cart', {
+            title: "Cart",
+            styles:"cart.css",
+            products: cart.products,
+            cartId: cart._id
+        })
+    } 
+        
+    catch (error) {
+        res.status(500).send({
+            status: "error",
+            error: error.message
+        })
+    }
 })
 
 router.get("/realtimeproducts", async (req,res)=>{

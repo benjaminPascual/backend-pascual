@@ -1,0 +1,17 @@
+<h1>Cart</h1>
+<div id="{{cartId}}" class="cart-list">
+{{#if products}}
+    {{#each products}}
+        <div class="product-item" id={{product}} >
+            <p>{{products.title}}</p>
+            <p>{{products.price}}</p>
+            <p>amount: {{quantity}}</p>
+            <button onclick="removeProduct(event)">Remove</button>
+        </div>
+    {{/each}}
+{{else}}
+    <p>The cart is empty</p>
+{{/if}}
+</div>
+
+<script src="/script.cart.js"></script>

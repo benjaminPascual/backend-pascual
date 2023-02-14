@@ -65,8 +65,8 @@ class CartService{
 
     async deleteProductFromCart(cid, pid){
         try {
-            const cart = await this.getCartById(cid)
-            const productToDelete = cart.products.find(product => product.product._id == pid)
+            const cart = await this.getCartById(cid);
+            const productToDelete = cart.products.find(ele => ele.product == pid)
             const index = cart.products.indexOf(productToDelete)
             if(index < 0){
                 throw new Error('Product not found')
